@@ -10,15 +10,19 @@
 #import "MSJournalerData.h"
 #import "MSUIImageExtras.h"
 #import <Parse/Parse.h>
+#include <stdlib.h>
 
 @implementation MSJournalerDoc
 @synthesize data = _data;
 @synthesize thumbImage = _thumbImage;
 @synthesize fullImage = _fullImage;
 @synthesize content = _content;
+@synthesize hash = _hash;
+@synthesize objectId = _objectId;
 
 
-- (id)initWithTitle:(NSString*)title rating:(float)rating thumbImage:(UIImage *)thumbImage fullImage:(UIImage *)fullImage content:(NSString *)content
+
+- (id)initWithTitle:(NSString*)title rating:(float)rating thumbImage:(UIImage *)thumbImage fullImage:(UIImage *)fullImage content:(NSString *)content hash:(NSString*)hash
 {
     NSLog(@"POST %@  with %@", title, content);
     if ((self = [super init])) {
@@ -26,21 +30,24 @@
         self.thumbImage = [fullImage imageByScalingAndCroppingForSize:CGSizeMake(44, 44)];
         self.fullImage = fullImage;
         self.content = content;
+        self.hash = hash;
     }
     return self;
 }
 
 - (id)initNewWithTitle:(NSString*)title rating:(float)rating thumbImage:(UIImage *)thumbImage fullImage:(UIImage *)fullImage content:(NSString *)content
 {
+    NSString *hash_holder = 0;
         NSLog(@"NEW POST %@  with %@", title, content);
     if ((self = [super init])) {
         self.data = [[MSJournalerData alloc] initWithTitle:title rating:rating];
         self.thumbImage = [fullImage imageByScalingAndCroppingForSize:CGSizeMake(44, 44)];
         self.fullImage = fullImage;
         self.content = content;
+        hash_holder = [[NSString alloc ] initWithFormat:@"%d", arc4random()];
+        self.hash = hash_holder;
+        NSLog(@"Random is %@", hash_holder);
     }
-    //
-    
     UIImage *image = fullImage;
     NSString *imageName = title;
     NSData* data = UIImageJPEGRepresentation(image, 1.0f);
@@ -56,11 +63,11 @@
             post.ACL = [PFACL ACLWithUser:[PFUser currentUser]];
             PFUser *user = [PFUser currentUser];
             [post setObject:user forKey:@"user"];
-            NSLog(@"TITTITTT = %@", title);
             post[@"Title"] = title;
             post[@"Rating"] = @ 1;
             post[@"Photo"] = title;
             post[@"Content"] = content;
+            post[@"Hash"] =  hash_holder;
             [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (!error) {
                     NSLog(@"no error, Succeeded!");
@@ -86,8 +93,6 @@
 - (id)initNewUploadWithTitle:(NSString*)title rating:(float)rating fullImage:(UIImage *)fullImage content:(NSString *)content
 {
     NSLog(@"NEW UPLOAD %@  with %@", title, content);
-
-    
     UIImage *image = fullImage;
     NSString *imageName = title;
     NSData* data = UIImageJPEGRepresentation(image, 1.0f);

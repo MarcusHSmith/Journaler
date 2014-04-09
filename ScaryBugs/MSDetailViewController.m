@@ -11,6 +11,7 @@
 #import "MSJournalerData.h"
 #import "MSUIImageExtras.h"
 #import "SVProgressHUD.h"
+#import <Parse/Parse.h>
 
 @interface MSDetailViewController ()
 - (IBAction)Submit:(id)sender;
@@ -27,8 +28,6 @@
 {
     if (_detailItem != newDetailItem) {
         _detailItem = newDetailItem;
-        
-        // Update the view.
         [self configureView];
     }
 }
@@ -38,7 +37,6 @@
     NSLog(@"%@", self.detailItem.data.title);
     NSLog(@"%@", self.detailItem.data.rating);
     NSLog(@"%@", self.detailItem.content);
-   // NSLog(@"%@", self.detailItem.fullImage);
     [[MSJournalerDoc alloc] initNewUploadWithTitle:self.detailItem.data.title rating:self.detailItem.data.rating fullImage:self.detailItem.fullImage content: self.detailItem.content];
 }
 
@@ -53,11 +51,9 @@
     self.rateView.editable = YES;
     self.rateView.maxRating = 5;
     self.rateView.delegate = self;
-    
     if (self.detailItem) {
         self.titleField.text = self.detailItem.data.title;
         self.content.text = self.detailItem.content;
-    
         self.rateView.rating = self.detailItem.data.rating;
         self.imageView.image = self.detailItem.fullImage;
     }
@@ -69,10 +65,38 @@
 
 - (IBAction)titleFieldTextChanged:(id)sender {
     self.detailItem.data.title = self.titleField.text;
+    NSString *hash = self.detailItem.hash;
+    NSString *title = self.titleField.text;
+        NSMutableArray *bugs = [NSMutableArray arrayWithObjects: nil];
+        PFQuery *queryJournal = [PFQuery queryWithClassName:@"Post"];
+        [queryJournal whereKey:@"Hash" equalTo: hash];
+        [queryJournal getFirstObjectInBackgroundWithBlock:^(PFObject * reportStatus, NSError *error)        {
+        if (!error) {
+            [reportStatus setObject:title forKey:@"Title"];
+            [reportStatus saveInBackground];
+        } else {
+            NSLog(@"Error: %@", error);
+        }
+    }];
 }
 
 - (IBAction)contentFieldTextChanged:(id)sender {
+    self.detailItem.content = self.content.text;
+    NSString *hash = self.detailItem.hash;
+    NSString *content = self.content.text;
+    NSMutableArray *bugs = [NSMutableArray arrayWithObjects: nil];
+    PFQuery *queryJournal = [PFQuery queryWithClassName:@"Post"];
+    [queryJournal whereKey:@"Hash" equalTo: hash];
+    [queryJournal getFirstObjectInBackgroundWithBlock:^(PFObject * reportStatus, NSError *error)        {
+        if (!error) {
+            [reportStatus setObject:content forKey:@"Content"];
+            [reportStatus saveInBackground];
+        } else {
+            NSLog(@"Error: %@", error);
+        }
+    }];
 }
+
 
 #pragma mark UITextFieldDelegate
 
