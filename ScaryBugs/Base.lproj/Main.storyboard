@@ -22,7 +22,7 @@
         <!--Master View Controller - Master-->
         <scene sceneID="VgW-fR-Quf">
             <objects>
-                <tableViewController title="Master" id="pGg-6v-bdr" customClass="MSMasterViewController" sceneMemberID="viewController">
+                <tableViewController title="Master" wantsFullScreenLayout="YES" id="pGg-6v-bdr" customClass="MSMasterViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="mLL-gJ-YKr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -57,6 +57,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Master" id="tQt-TN-PWz"/>
+                    <size key="freeformSize" width="320" height="568"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Cn-md-YlS" sceneMemberID="firstResponder"/>
             </objects>
