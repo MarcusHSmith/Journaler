@@ -14,7 +14,6 @@
 #import <Parse/Parse.h>
 
 @interface MSDetailViewController ()
-- (IBAction)Submit:(id)sender;
 - (void)configureView;
 @end
 
@@ -32,19 +31,8 @@
     }
 }
 
-- (IBAction)Submit:(id)sender {
-    NSLog(@"SUBMIT");
-    NSLog(@"%@", self.detailItem.data.title);
-    NSLog(@"%@", self.detailItem.data.rating);
-    NSLog(@"%@", self.detailItem.content);
-    [[MSJournalerDoc alloc] initNewUploadWithTitle:self.detailItem.data.title rating:self.detailItem.data.rating fullImage:self.detailItem.fullImage content: self.detailItem.content];
-}
-
-
-
 - (void)configureView
 {
-    // Update the user interface for the detail item.
     self.rateView.notSelectedImage = [UIImage imageNamed:@"shockedface2_empty.png"];
     self.rateView.halfSelectedImage = [UIImage imageNamed:@"shockedface2_half.png"];
     self.rateView.fullSelectedImage = [UIImage imageNamed:@"shockedface2_full.png"];
