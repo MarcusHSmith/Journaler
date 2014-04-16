@@ -33,10 +33,6 @@
 }
 
 - (IBAction)Submit:(id)sender {
-    NSLog(@"SUBMIT");
-    NSLog(@"%@", self.detailItem.data.title);
-    NSLog(@"%@", self.detailItem.data.rating);
-    NSLog(@"%@", self.detailItem.content);
     [[MSJournalerDoc alloc] initNewUploadWithTitle:self.detailItem.data.title rating:self.detailItem.data.rating fullImage:self.detailItem.fullImage content: self.detailItem.content];
 }
 
