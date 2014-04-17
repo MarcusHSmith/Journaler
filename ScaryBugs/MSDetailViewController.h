@@ -21,6 +21,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) UIImagePickerController *picker;
 
+//Functions
+
 - (IBAction)addPictureTapped:(id)sender;
 - (IBAction)titleFieldTextChanged:(id)sender;
 - (IBAction)contentFieldTextChanged:(id)sender;

@@ -5,16 +5,15 @@
       "idiom" : "iphone",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
-      "filename" : "Captura de pantalla de Simulador iOS 06.02.2014 20.40.29.png",
+      "filename" : "Captura de pantalla de Simulador iOS 06.02.2014 20.40.29 copy-1.png",
       "scale" : "2x"
     },
     {
-      "extent" : "full-screen",
-      "idiom" : "iphone",
-      "subtype" : "retina4",
-      "filename" : "logo1.png",
-      "minimum-system-version" : "7.0",
       "orientation" : "portrait",
+      "idiom" : "iphone",
+      "extent" : "full-screen",
+      "minimum-system-version" : "7.0",
+      "subtype" : "retina4",
       "scale" : "2x"
     }
   ],
