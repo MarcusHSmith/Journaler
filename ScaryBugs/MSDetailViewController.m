@@ -31,15 +31,6 @@
     }
 }
 
-<<<<<<< HEAD
-- (IBAction)Submit:(id)sender {
-    [[MSJournalerDoc alloc] initNewUploadWithTitle:self.detailItem.data.title rating:self.detailItem.data.rating fullImage:self.detailItem.fullImage content: self.detailItem.content];
-}
-
-
-
-=======
->>>>>>> de4aa1e2c60c6b61b3c3810f5bac5e667774f3a1
 - (void)configureView
 {
     self.rateView.notSelectedImage = [UIImage imageNamed:@"shockedface2_empty.png"];
