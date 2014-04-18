@@ -55,7 +55,6 @@
     self.detailItem.data.title = self.titleField.text;
     NSString *hash = self.detailItem.hash;
     NSString *title = self.titleField.text;
-        NSMutableArray *bugs = [NSMutableArray arrayWithObjects: nil];
         PFQuery *queryJournal = [PFQuery queryWithClassName:@"Post"];
         [queryJournal whereKey:@"Hash" equalTo: hash];
         [queryJournal getFirstObjectInBackgroundWithBlock:^(PFObject * reportStatus, NSError *error)        {
@@ -72,7 +71,6 @@
     self.detailItem.content = self.content.text;
     NSString *hash = self.detailItem.hash;
     NSString *content = self.content.text;
-    NSMutableArray *bugs = [NSMutableArray arrayWithObjects: nil];
     PFQuery *queryJournal = [PFQuery queryWithClassName:@"Post"];
     [queryJournal whereKey:@"Hash" equalTo: hash];
     [queryJournal getFirstObjectInBackgroundWithBlock:^(PFObject * reportStatus, NSError *error)        {
@@ -168,10 +166,39 @@
         // 4) Present image in main thread
         dispatch_async(dispatch_get_main_queue(), ^{
             self.detailItem.fullImage = fullImage;
-            self.detailItem.thumbImage = thumbImage;
-            self.imageView.image = fullImage;
-            [SVProgressHUD dismiss];
-        });
+            //saving the image
+            
+            NSString *hash = self.detailItem.hash;
+            UIImage *image = fullImage;
+            
+            NSString *imageName = self.titleField.text;
+            
+            NSData* data = UIImageJPEGRepresentation(image, 1.0f);
+            PFFile *imageFile = [PFFile fileWithName:imageName data:data];
+            [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (!error) {
+                    PFQuery *queryJournal = [PFQuery queryWithClassName:@"Post"];
+                    [queryJournal whereKey:@"Hash" equalTo: hash];
+                    [queryJournal getFirstObjectInBackgroundWithBlock:^(PFObject * reportStatus, NSError *error)        {
+                        if (!error) {
+                            [reportStatus setObject:imageFile forKey:@"imageFile"];
+                            [reportStatus saveInBackground];
+                        } else {
+                            NSLog(@"Error: %@", error);
+                        }
+                    }];
+                    
+                    self.detailItem.thumbImage = thumbImage;
+                    self.imageView.image = fullImage;
+                    [SVProgressHUD dismiss];
+                }
+                else{
+                    NSLog(@"Error: %@ %@", error, [error userInfo]);
+                }
+            } progressBlock:^(int percentDone) {
+                // Update your progress spinner here. percentDone will be between 0 and 100
+            }];
+            });
         
     });
     
