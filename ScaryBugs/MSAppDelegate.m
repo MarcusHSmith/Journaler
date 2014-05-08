@@ -24,6 +24,12 @@
     UITabBarController *tabBarController = (UITabBarController *) self.window.rootViewController;
     MSMasterViewController *masterController = [((UINavigationController *)[tabBarController.viewControllers objectAtIndex:0]).viewControllers objectAtIndex:0];
     
+    long i = tabBarController.viewControllers.count;
+    for (int j = 0; j < i; j++) {
+        UINavigationController *navController = [tabBarController.viewControllers objectAtIndex:j];
+        [[navController.viewControllers objectAtIndex:0] viewDidLoad];
+    }
+    
     bugs = [[NSMutableArray alloc]init];
     
     masterController.bugs = bugs;
