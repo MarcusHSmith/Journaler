@@ -1,7 +1,7 @@
 Journaler
 =========
 
-Solo project by Marcus Smith built at #BigHack 2014
+CS198 Project for Marcus Lee & Marcus Smith
 
 ## Instructions
 
