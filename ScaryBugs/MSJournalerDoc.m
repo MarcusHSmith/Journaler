@@ -63,9 +63,9 @@
             [post setObject:imageFile forKey:@"imageFile"];
             
             // Set the access control list to current user for security purposes
-            post.ACL = [PFACL ACLWithUser:[PFUser currentUser]];
-            PFUser *user = [PFUser currentUser];
-            [post setObject:user forKey:@"user"];
+//            post.ACL = [PFACL ACLWithUser:[PFUser currentUser]];
+//            PFUser *user = [PFUser currentUser];
+//            [post setObject:user forKey:@"user"];
             post[@"Title"] = title;
             post[@"Rating"] = @ 1;
             post[@"Photo"] = title;

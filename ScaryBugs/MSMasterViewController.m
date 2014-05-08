@@ -98,11 +98,8 @@
     NSLog(@"Self table view %i", self.tableView.tag);
     NSMutableArray *bugs = [NSMutableArray arrayWithObjects: nil];
     PFQuery *queryJournal = [PFQuery queryWithClassName:@"Post"];
-    
-    //[queryJournal whereKey:@"user" equalTo:[PFUser currentUser]];
-    NSLog(@"MY CURRENT PAGE ON PULL %@", [NSString stringWithFormat: @"%d", self.tableView.tag]);
+    NSLog(@"OBJECT: %@", queryJournal);
     [queryJournal whereKey:@"Cat" equalTo: [NSString stringWithFormat: @"%d", self.tableView.tag]];
-    
     [queryJournal findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (!error) {
             for (PFObject *object in posts) {
