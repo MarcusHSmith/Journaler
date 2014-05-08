@@ -21,8 +21,8 @@
                   clientKey:@"BpGsFpZ6lte0RAdS8HJes2fqrXTbO2R66H7TQNPy"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
-    UINavigationController *navController = (UINavigationController *) self.window.rootViewController;
-    MSMasterViewController *masterController = [navController.viewControllers objectAtIndex:0];
+    UITabBarController *tabBarController = (UITabBarController *) self.window.rootViewController;
+    MSMasterViewController *masterController = [((UINavigationController *)[tabBarController.viewControllers objectAtIndex:0]).viewControllers objectAtIndex:0];
     
     bugs = [[NSMutableArray alloc]init];
     
