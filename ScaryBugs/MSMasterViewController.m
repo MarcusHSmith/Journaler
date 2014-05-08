@@ -39,7 +39,15 @@
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
-    self.title = @"Journaler";
+    if (self.tableView.tag == 1){
+        self.title = @"Personal";
+    }
+    else if (self.tableView.tag == 2){
+        self.title = @"Male";
+    }
+    else if (self.tableView.tag == 3){
+        self.title = @"Female";
+    }
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
                                               initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
@@ -87,9 +95,14 @@
 }
 
 -(void)pullDown{
+    NSLog(@"Self table view %i", self.tableView.tag);
     NSMutableArray *bugs = [NSMutableArray arrayWithObjects: nil];
     PFQuery *queryJournal = [PFQuery queryWithClassName:@"Post"];
-    [queryJournal whereKey:@"user" equalTo:[PFUser currentUser]];
+    
+    //[queryJournal whereKey:@"user" equalTo:[PFUser currentUser]];
+    NSLog(@"MY CURRENT PAGE ON PULL %@", [NSString stringWithFormat: @"%d", self.tableView.tag]);
+    [queryJournal whereKey:@"Cat" equalTo: [NSString stringWithFormat: @"%d", self.tableView.tag]];
+    
     [queryJournal findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (!error) {
             for (PFObject *object in posts) {
@@ -97,7 +110,7 @@
                 [fileObject getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
                     if (!error) {
                         UIImage *image = [UIImage imageWithData:data];
-                        MSJournalerDoc *post = [[MSJournalerDoc alloc] initWithTitle:object[@"Title"] rating:0 thumbImage:image fullImage:image content:object[@"Content"] hash:object[@"Hash"]];
+                        MSJournalerDoc *post = [[MSJournalerDoc alloc] initWithTitle:object[@"Title"] rating:0 thumbImage:image fullImage:image content:object[@"Content"] hash:object[@"Hash"] cat:object[@"Cat"]];
                         [bugs addObject:post];
                         [self.tableView reloadData];
                     }
@@ -124,6 +137,7 @@
             [post setObject:user forKey:@"user"];
             post[@"Title"] = @"Marcus";
             post[@"Rating"] = @ 1;
+            post[@"Cat"] = [NSString stringWithFormat: @"%d", self.tableView.tag];
             post[@"Photo"] = @"Marcus.jpg";
             post[@"Content"] = @"MARCUS's FIRST JOURNAL POST";
             [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -223,7 +237,7 @@
 }
 
 - (void)addTapped:(id)sender {
-    MSJournalerDoc *newDoc = [[MSJournalerDoc alloc] initNewWithTitle:@"New Post Title" rating:0 thumbImage:nil fullImage:[UIImage imageNamed:@"new.jpg"] content:@"Your Post Content Here"];
+    MSJournalerDoc *newDoc = [[MSJournalerDoc alloc] initNewWithTitle:@"New Post Title" rating:0 thumbImage:nil fullImage:[UIImage imageNamed:@"new.jpg"] content:@"Your Post Content Here" cat:[NSString stringWithFormat: @"%d", self.tableView.tag]];
     
     [_bugs addObject:newDoc];
     

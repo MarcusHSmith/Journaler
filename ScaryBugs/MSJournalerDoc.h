@@ -18,12 +18,13 @@
 @property (strong) UIImage *fullImage;
 @property (strong) NSString *content;
 @property (strong) NSString *hash;
+@property (strong) NSString *cat;
 @property (strong) NSString *objectId;
 
 
-- (id)initWithTitle:(NSString*)title rating:(float)rating thumbImage:(UIImage *)thumbImage fullImage:(UIImage *)fullImage content:(NSString *)content hash:(NSString*)hash;
-- (id)initNewWithTitle:(NSString*)title rating:(float)rating thumbImage:(UIImage *)thumbImage fullImage:(UIImage *)fullImage content:(NSString *)content;
-- (id)initNewUploadWithTitle:(NSString*)title rating:(float)rating fullImage:(UIImage *)fullImage content:(NSString *)content;
+- (id)initWithTitle:(NSString*)title rating:(float)rating thumbImage:(UIImage *)thumbImage fullImage:(UIImage *)fullImage content:(NSString *)content hash:(NSString*)hash cat:(NSString*)cat;
+- (id)initNewWithTitle:(NSString*)title rating:(float)rating thumbImage:(UIImage *)thumbImage fullImage:(UIImage *)fullImage content:(NSString *)content cat:(NSString*)cat;
+- (id)initNewUploadWithTitle:(NSString*)title rating:(float)rating fullImage:(UIImage *)fullImage content:(NSString *)content cat:(NSString*)cat;
 
 
 @end

@@ -181,6 +181,9 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="Ah7-4n-0Wa" kind="push" identifier="MySegue" id="GQH-pW-Q3H"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -200,6 +203,7 @@
         <!--Master View Controller - Master-->
         <scene sceneID="GTU-w3-Xca">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x1N-CR-KJ6" sceneMemberID="firstResponder"/>
                 <tableViewController title="Master" wantsFullScreenLayout="YES" id="Md7-EB-WDP" customClass="MSMasterViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" tag="3" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Zl8-3S-Poy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -223,6 +227,9 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="Ah7-4n-0Wa" kind="push" identifier="MySegue" id="XGy-mZ-PUt"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -235,13 +242,13 @@
                     <navigationItem key="navigationItem" title="Master" id="Nyx-oW-zmd"/>
                     <size key="freeformSize" width="320" height="568"/>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x1N-CR-KJ6" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="480" y="753"/>
         </scene>
         <!--Navigation Controller - Item-->
         <scene sceneID="eAq-wI-f7D">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0s8-l7-H2W" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="qrX-gu-bHV" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="bJv-Zf-lX4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="V6I-L8-VJj">
@@ -251,7 +258,6 @@
                         <segue destination="Md7-EB-WDP" kind="relationship" relationship="rootViewController" id="31S-8j-KgW"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0s8-l7-H2W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-21" y="753"/>
         </scene>
@@ -261,4 +267,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="XGy-mZ-PUt"/>
+    </inferredMetricsTieBreakers>
 </document>
