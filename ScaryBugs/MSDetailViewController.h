@@ -11,12 +11,12 @@
 
 @class MSJournalerDoc;
 
-@interface MSDetailViewController : UIViewController <UITextFieldDelegate, MSRateViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface MSDetailViewController : UIViewController <UITextFieldDelegate, MSRateViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UINavigationBarDelegate, UITextViewDelegate>
 
 @property (strong, nonatomic) MSJournalerDoc *detailItem;
 @property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 @property (weak, nonatomic) IBOutlet UITextField *titleField;
-@property (weak, nonatomic) IBOutlet UITextField *content;
+@property (weak, nonatomic) IBOutlet UITextView *content;
 @property (weak, nonatomic) IBOutlet MSRateView *rateView;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) UIImagePickerController *picker;
@@ -25,6 +25,6 @@
 
 - (IBAction)addPictureTapped:(id)sender;
 - (IBAction)titleFieldTextChanged:(id)sender;
-- (IBAction)contentFieldTextChanged:(id)sender;
+- (IBAction)contentviewTextChanged:(id)sender;
 
 @end

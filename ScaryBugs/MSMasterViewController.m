@@ -99,7 +99,14 @@
     NSMutableArray *bugs = [NSMutableArray arrayWithObjects: nil];
     PFQuery *queryJournal = [PFQuery queryWithClassName:@"Post"];
     NSLog(@"OBJECT: %@", queryJournal);
-    [queryJournal whereKey:@"Cat" equalTo: [NSString stringWithFormat: @"%d", self.tableView.tag]];
+    if ( self.tableView.tag != 1){
+        NSLog(@"CHECKING ALL OTHERS");
+        [queryJournal whereKey:@"Cat" equalTo: [NSString stringWithFormat: @"%d", self.tableView.tag]];
+    } else {
+        NSLog(@"CHECKING ELSE");
+        NSLog(@"USER %@", [PFUser currentUser]);
+        [queryJournal whereKey:@"User" equalTo: [PFUser currentUser]];
+    }
     [queryJournal findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (!error) {
             for (PFObject *object in posts) {
@@ -196,7 +203,13 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    MSJournalerDoc *bug = [_bugs objectAtIndex:indexPath.row];
+    NSString *temp = @"1";
+    if ([bug.count isEqualToString:temp ]){
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath

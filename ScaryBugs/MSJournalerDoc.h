@@ -19,6 +19,7 @@
 @property (strong) NSString *content;
 @property (strong) NSString *hash;
 @property (strong) NSString *cat;
+@property (strong) NSString *count;
 @property (strong) NSString *objectId;
 
 

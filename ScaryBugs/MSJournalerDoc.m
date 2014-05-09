@@ -19,6 +19,7 @@
 @synthesize content = _content;
 @synthesize hash = _hash;
 @synthesize cat = _cat;
+@synthesize count = _count;
 @synthesize objectId = _objectId;
 
 
@@ -33,6 +34,7 @@
         self.content = content;
         self.hash = hash;
         self.cat = cat;
+        self.count = @"2";
     }
     return self;
 }
@@ -49,6 +51,7 @@
         hash_holder = [[NSString alloc ] initWithFormat:@"%d", arc4random()];
         self.hash = hash_holder;
         self.cat = cat;
+        self.count = @"1";
         NSLog(@"Random is %@", hash_holder);
     }
     UIImage *image = fullImage;
@@ -63,15 +66,16 @@
             [post setObject:imageFile forKey:@"imageFile"];
             
             // Set the access control list to current user for security purposes
-//            post.ACL = [PFACL ACLWithUser:[PFUser currentUser]];
-//            PFUser *user = [PFUser currentUser];
-//            [post setObject:user forKey:@"user"];
+            if([cat isEqualToString:@"1"]){
+                post[@"User"] = [PFUser currentUser];
+            }
             post[@"Title"] = title;
             post[@"Rating"] = @ 1;
             post[@"Photo"] = title;
             post[@"Content"] = content;
             post[@"Cat"] = cat;
             post[@"Hash"] =  hash_holder;
+            post[@"Count"] = @"1";
             [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (!error) {
                     NSLog(@"no error, Succeeded!");
@@ -109,14 +113,15 @@
             [post setObject:imageFile forKey:@"imageFile"];
             
             // Set the access control list to current user for security purposes
-            post.ACL = [PFACL ACLWithUser:[PFUser currentUser]];
-            PFUser *user = [PFUser currentUser];
-            [post setObject:user forKey:@"user"];
+            if([cat isEqualToString:@"1"]){
+                post[@"User"] = [PFUser currentUser];
+            }
             post[@"Title"] = title;
             post[@"Rating"] = @ 1;
             post[@"Photo"] = title;
             post[@"Content"] = content;
             post[@"Cat"] = cat;
+            post[@"Count"] = @"2";
             [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (!error) {
                     NSLog(@"no error, Succeeded!");

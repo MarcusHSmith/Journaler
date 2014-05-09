@@ -45,42 +45,62 @@
         self.rateView.rating = self.detailItem.data.rating;
         self.imageView.image = self.detailItem.fullImage;
     }
+    NSString *temp = @"1";
+    if (![self.detailItem.count isEqualToString:temp ]){
+        NSLog(@"CAN't EDIT IN HERE");
+        self.content.editable = NO;
+        [self.titleField setEnabled:NO];
+    }
+    // ADDED CODE
+    self.content.delegate = self;
+//    [self.navigationController.navigationItem.backBarButtonItem setTarget:self];
+//    [self.navigationController.navigationItem.backBarButtonItem setAction:@selector(contentViewTextChanged:)];
+//    NSLog(@"%@ %@", self, self.navigationItem.backBarButtonItem.action);
+    // ADDED CODE
 }
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation {
     return YES;
 }
 
 - (IBAction)titleFieldTextChanged:(id)sender {
-    self.detailItem.data.title = self.titleField.text;
-    NSString *hash = self.detailItem.hash;
-    NSString *title = self.titleField.text;
+    NSString *temp = @"1";
+    if ([self.detailItem.count isEqualToString:temp ]){
+        self.detailItem.data.title = self.titleField.text;
+        NSString *hash = self.detailItem.hash;
+        NSString *title = self.titleField.text;
+            PFQuery *queryJournal = [PFQuery queryWithClassName:@"Post"];
+            [queryJournal whereKey:@"Hash" equalTo: hash];
+            [queryJournal getFirstObjectInBackgroundWithBlock:^(PFObject * reportStatus, NSError *error)        {
+                if (!error) {
+                    [reportStatus setObject:title forKey:@"Title"];
+                    [reportStatus saveInBackground];
+                } else {
+                    NSLog(@"Error: %@", error);
+                }
+            }];
+    }
+}
+
+- (IBAction)contentViewTextChanged:(id)sender {
+    NSLog(@"TYING TO CHANGE CONTENT");
+    NSString *temp = @"1";
+    if ([self.detailItem.count isEqualToString:temp ]){
+        self.detailItem.content = self.content.text;
+        NSString *hash = self.detailItem.hash;
+        NSString *content = self.content.text;
         PFQuery *queryJournal = [PFQuery queryWithClassName:@"Post"];
         [queryJournal whereKey:@"Hash" equalTo: hash];
         [queryJournal getFirstObjectInBackgroundWithBlock:^(PFObject * reportStatus, NSError *error)        {
-        if (!error) {
-            [reportStatus setObject:title forKey:@"Title"];
-            [reportStatus saveInBackground];
-        } else {
-            NSLog(@"Error: %@", error);
-        }
-    }];
-}
-
-- (IBAction)contentFieldTextChanged:(id)sender {
-    self.detailItem.content = self.content.text;
-    NSString *hash = self.detailItem.hash;
-    NSString *content = self.content.text;
-    PFQuery *queryJournal = [PFQuery queryWithClassName:@"Post"];
-    [queryJournal whereKey:@"Hash" equalTo: hash];
-    [queryJournal getFirstObjectInBackgroundWithBlock:^(PFObject * reportStatus, NSError *error)        {
-        if (!error) {
-            [reportStatus setObject:content forKey:@"Content"];
-            [reportStatus saveInBackground];
-        } else {
-            NSLog(@"Error: %@", error);
-        }
-    }];
+            if (!error) {
+                [reportStatus setObject:content forKey:@"Content"];
+                [reportStatus saveInBackground];
+            } else {
+                NSLog(@"Error: %@", error);
+            }
+        }];
+    }
 }
 
 
@@ -111,33 +131,32 @@
 }
 
 - (IBAction)addPictureTapped:(id)sender {
-    if (self.picker == nil) {
+    NSString *temp = @"1";
+    if ([self.detailItem.count isEqualToString:temp ]){
+        if (self.picker == nil) {
         
-        // 1) Show status
-        [SVProgressHUD showWithStatus:@"Loading picker..."];
+            // 1) Show status
+            [SVProgressHUD showWithStatus:@"Loading picker..."];
         
-        // 2) Get a concurrent queue form the system
-        dispatch_queue_t concurrentQueue =
-        dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        
-        // 3) Load picker in background
-        dispatch_async(concurrentQueue, ^{
+            // 2) Get a concurrent queue form the system
+            dispatch_queue_t concurrentQueue =
+            dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+            // 3) Load picker in background
+            dispatch_async(concurrentQueue, ^{
+                self.picker = [[UIImagePickerController alloc] init];
+                self.picker.delegate = self;
+                self.picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                self.picker.allowsEditing = NO;
             
-            self.picker = [[UIImagePickerController alloc] init];
-            self.picker.delegate = self;
-            self.picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            self.picker.allowsEditing = NO;
-            
-            // 4) Present picker in main thread
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self presentViewController:_picker animated:YES completion:nil];
-                [SVProgressHUD dismiss];
+                // 4) Present picker in main thread
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self presentViewController:_picker animated:YES completion:nil];
+                    [SVProgressHUD dismiss];
+                });
             });
-            
-        });
-        
-    }  else {
-        [self presentViewController:_picker animated:YES completion:nil];
+        }  else {
+            [self presentViewController:_picker animated:YES completion:nil];
+        }
     }
 }
 
@@ -203,7 +222,16 @@
     });
     
     [self dismissViewControllerAnimated:YES completion:nil];
+}
 
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    [self contentViewTextChanged:self.content];
+    return YES;
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.content resignFirstResponder];
+    [self.titleField resignFirstResponder];
 }
 
 @end
