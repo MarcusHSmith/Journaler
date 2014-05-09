@@ -22,11 +22,8 @@
 @synthesize count = _count;
 @synthesize objectId = _objectId;
 
-
-
 - (id)initWithTitle:(NSString*)title rating:(float)rating thumbImage:(UIImage *)thumbImage fullImage:(UIImage *)fullImage content:(NSString *)content hash:(NSString*)hash cat:(NSString*)cat
 {
-    NSLog(@"POST %@  with %@", title, content);
     if ((self = [super init])) {
         self.data = [[MSJournalerData alloc] initWithTitle:title rating:rating];
         self.thumbImage = [fullImage imageByScalingAndCroppingForSize:CGSizeMake(44, 44)];
@@ -42,7 +39,6 @@
 - (id)initNewWithTitle:(NSString*)title rating:(float)rating thumbImage:(UIImage *)thumbImage fullImage:(UIImage *)fullImage content:(NSString *)content cat:(NSString*)cat
 {
     NSString *hash_holder = 0;
-        NSLog(@"NEW POST %@  with %@", title, content);
     if ((self = [super init])) {
         self.data = [[MSJournalerData alloc] initWithTitle:title rating:rating];
         self.thumbImage = [fullImage imageByScalingAndCroppingForSize:CGSizeMake(44, 44)];
@@ -52,7 +48,6 @@
         self.hash = hash_holder;
         self.cat = cat;
         self.count = @"1";
-        NSLog(@"Random is %@", hash_holder);
     }
     UIImage *image = fullImage;
     NSString *imageName = title;
@@ -100,7 +95,6 @@
 
 - (id)initNewUploadWithTitle:(NSString*)title rating:(float)rating fullImage:(UIImage *)fullImage content:(NSString *)content cat:(NSString*)cat
 {
-    NSLog(@"NEW UPLOAD %@  with %@", title, content);
     UIImage *image = fullImage;
     NSString *imageName = title;
     NSData* data = UIImageJPEGRepresentation(image, 1.0f);
@@ -111,7 +105,6 @@
             // Create a PFObject around a PFFile and associate it with the current user
             PFObject *post = [PFObject objectWithClassName:@"Post"];
             [post setObject:imageFile forKey:@"imageFile"];
-            
             // Set the access control list to current user for security purposes
             if([cat isEqualToString:@"1"]){
                 post[@"User"] = [PFUser currentUser];

@@ -33,32 +33,18 @@
 
 - (void)configureView
 {
-    self.rateView.notSelectedImage = [UIImage imageNamed:@"shockedface2_empty.png"];
-    self.rateView.halfSelectedImage = [UIImage imageNamed:@"shockedface2_half.png"];
-    self.rateView.fullSelectedImage = [UIImage imageNamed:@"shockedface2_full.png"];
-    self.rateView.editable = YES;
-    self.rateView.maxRating = 5;
-    self.rateView.delegate = self;
     if (self.detailItem) {
         self.titleField.text = self.detailItem.data.title;
         self.content.text = self.detailItem.content;
-        self.rateView.rating = self.detailItem.data.rating;
         self.imageView.image = self.detailItem.fullImage;
     }
     NSString *temp = @"1";
     if (![self.detailItem.count isEqualToString:temp ]){
-        NSLog(@"CAN't EDIT IN HERE");
         self.content.editable = NO;
         [self.titleField setEnabled:NO];
     }
-    // ADDED CODE
     self.content.delegate = self;
-//    [self.navigationController.navigationItem.backBarButtonItem setTarget:self];
-//    [self.navigationController.navigationItem.backBarButtonItem setAction:@selector(contentViewTextChanged:)];
-//    NSLog(@"%@ %@", self, self.navigationItem.backBarButtonItem.action);
-    // ADDED CODE
 }
-
 
 - (BOOL)shouldAutorotateToInterfaceOrientation {
     return YES;
@@ -84,7 +70,6 @@
 }
 
 - (IBAction)contentViewTextChanged:(id)sender {
-    NSLog(@"TYING TO CHANGE CONTENT");
     NSString *temp = @"1";
     if ([self.detailItem.count isEqualToString:temp ]){
         self.detailItem.content = self.content.text;
@@ -113,10 +98,6 @@
 
 #pragma mark MSRateViewDelegate
 
-- (void)rateView:(MSRateView *)rateView ratingDidChange:(float)rating {
-    self.detailItem.data.rating = rating;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -136,7 +117,7 @@
         if (self.picker == nil) {
         
             // 1) Show status
-            [SVProgressHUD showWithStatus:@"Loading picker..."];
+            [SVProgressHUD showWithStatus:@"launch initiated..."];
         
             // 2) Get a concurrent queue form the system
             dispatch_queue_t concurrentQueue =
@@ -171,7 +152,7 @@
     UIImage *fullImage = (UIImage *) [info objectForKey:UIImagePickerControllerOriginalImage];
     
     // 1) Show status
-    [SVProgressHUD showWithStatus:@"Resizing image..."];
+    [SVProgressHUD showWithStatus:@"fighting leprechauns..."];
     
     // 2) Get a concurrent queue form the system
     dispatch_queue_t concurrentQueue =

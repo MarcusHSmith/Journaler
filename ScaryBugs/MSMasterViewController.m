@@ -57,9 +57,7 @@
                                               target:self action:@selector(addTapped:)];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.view.backgroundColor = [UIColor colorWithRed:216.0/255.0 green:216.0/255.0 blue:216.0/255.0 alpha:1];
-    // Lee Code
     self.tabBarController.delegate = self;
-    // Lee Code
 }
 
 - (NSString *) macAddress{
@@ -101,16 +99,11 @@
 }
 
 -(void)pullDown{
-    NSLog(@"Self table view %i", self.tableView.tag);
     NSMutableArray *bugs = [NSMutableArray arrayWithObjects: nil];
     PFQuery *queryJournal = [PFQuery queryWithClassName:@"Post"];
-    NSLog(@"OBJECT: %@", queryJournal);
     if ( self.tableView.tag != 1){
-        NSLog(@"CHECKING ALL OTHERS");
         [queryJournal whereKey:@"Cat" equalTo: [NSString stringWithFormat: @"%d", self.tableView.tag]];
     } else {
-        NSLog(@"CHECKING ELSE");
-        NSLog(@"USER %@", [PFUser currentUser]);
         [queryJournal whereKey:@"User" equalTo: [PFUser currentUser]];
     }
     [queryJournal findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
@@ -130,41 +123,6 @@
             [self.tableView reloadData];
         } else {
         }
-    }];
-}
-
--(void)createBug{
-    UIImage *image = [UIImage imageNamed:@"Marcus.jpg"];
-    NSString *imageName = @"Marcus.jpg";
-    NSData* data = UIImageJPEGRepresentation(image, 1.0f);
-    PFFile *imageFile = [PFFile fileWithName:imageName data:data];
-    [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (!error) {
-            PFObject *post = [PFObject objectWithClassName:@"Post"];
-            [post setObject:imageFile forKey:@"imageFile"];
-            post.ACL = [PFACL ACLWithUser:[PFUser currentUser]];
-            PFUser *user = [PFUser currentUser];
-            [post setObject:user forKey:@"user"];
-            post[@"Title"] = @"Marcus";
-            post[@"Rating"] = @ 1;
-            post[@"Cat"] = [NSString stringWithFormat: @"%d", self.tableView.tag];
-            post[@"Photo"] = @"Marcus.jpg";
-            post[@"Content"] = @"MARCUS's FIRST JOURNAL POST";
-            [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if (!error) {
-                    NSLog(@"no error, Succeeded!");
-                }
-                else{
-                    // Log details of the failure
-                    NSLog(@"Error: %@ %@", error, [error userInfo]);
-                }
-            }];
-        }
-        else{
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    } progressBlock:^(int percentDone) {
-        // Update your progress spinner here. percentDone will be between 0 and 100
     }];
 }
 
@@ -228,7 +186,6 @@
     [queryJournal whereKey:@"Hash" equalTo: hash];
     [queryJournal getFirstObjectInBackgroundWithBlock:^(PFObject * reportStatus, NSError *error)        {
         if (!error) {
-            NSLog(@"ABOUT TO DELETE");
             [reportStatus deleteEventually];
         } else {
             NSLog(@"Error: %@", error);
@@ -239,7 +196,6 @@
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
-
 
 -(void)didMoveToParentViewController:(UIViewController *)parent{
     [self.tableView reloadData];
