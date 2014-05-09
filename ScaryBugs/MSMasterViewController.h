@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MSMasterViewController : UITableViewController
+@interface MSMasterViewController : UITableViewController <UITabBarControllerDelegate>
 
 @property (strong) NSMutableArray *bugs;
 

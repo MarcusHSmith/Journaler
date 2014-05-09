@@ -43,10 +43,13 @@
         self.title = @"Personal";
     }
     else if (self.tableView.tag == 2){
-        self.title = @"Male";
+        self.title = @"Exercise";
     }
     else if (self.tableView.tag == 3){
-        self.title = @"Female";
+        self.title = @"Nutrition";
+    }
+    else if (self.tableView.tag == 4){
+        self.title = @"Rest";
     }
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
@@ -54,6 +57,9 @@
                                               target:self action:@selector(addTapped:)];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.view.backgroundColor = [UIColor colorWithRed:216.0/255.0 green:216.0/255.0 blue:216.0/255.0 alpha:1];
+    // Lee Code
+    self.tabBarController.delegate = self;
+    // Lee Code
 }
 
 - (NSString *) macAddress{
@@ -256,6 +262,13 @@
     [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:YES];
     [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
     [self performSegueWithIdentifier:@"MySegue" sender:self];
+}
+
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+    NSLog(@"INSIDE THIS FUNCTION");
+    UINavigationController *ourNavigator = (UINavigationController *) viewController;
+    [((MSMasterViewController *)ourNavigator.topViewController) loadView];
+    return YES;
 }
 
 @end

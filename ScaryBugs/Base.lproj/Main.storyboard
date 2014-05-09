@@ -18,6 +18,7 @@
                         <segue destination="rS3-R9-Ivy" kind="relationship" relationship="viewControllers" id="cZE-Fn-rWN"/>
                         <segue destination="VJb-IN-Ug3" kind="relationship" relationship="viewControllers" id="Fwq-V4-swH"/>
                         <segue destination="qrX-gu-bHV" kind="relationship" relationship="viewControllers" id="HLk-gB-4bF"/>
+                        <segue destination="NNy-Vg-6ei" kind="relationship" relationship="viewControllers" id="B5F-d7-VFc"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pEe-TV-HxT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -28,7 +29,7 @@
         <scene sceneID="cUi-kZ-frf">
             <objects>
                 <navigationController id="rS3-R9-Ivy" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="7KV-IR-PZI"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="lock-32.png" id="7KV-IR-PZI"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="yXu-0R-QUA">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -93,7 +94,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" id="ato-Pf-oZG" userLabel="Text Field">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" id="ato-Pf-oZG" userLabel="Text Field">
                                 <rect key="frame" x="20" y="72" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="18"/>
@@ -118,11 +119,10 @@
                                     <action selector="addPictureTapped:" destination="Ah7-4n-0Wa" eventType="touchUpInside" id="xgo-xF-c6R"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="ZGO-Er-LjC" customClass="UITextControl">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Text to edit." id="ZGO-Er-LjC" customClass="UITextControl">
                                 <rect key="frame" x="20" y="110" width="280" height="96"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -144,7 +144,7 @@
         <scene sceneID="7BL-BB-X6H">
             <objects>
                 <navigationController definesPresentationContext="YES" id="VJb-IN-Ug3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="yGl-Ur-hUM"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="dumbbell-32.png" id="yGl-Ur-hUM"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dD0-da-OVk">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -250,7 +250,7 @@
         <scene sceneID="eAq-wI-f7D">
             <objects>
                 <navigationController definesPresentationContext="YES" id="qrX-gu-bHV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="bJv-Zf-lX4"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="vegetarian_food-32.png" id="bJv-Zf-lX4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="V6I-L8-VJj">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -262,13 +262,80 @@
             </objects>
             <point key="canvasLocation" x="-21" y="753"/>
         </scene>
+        <!--Master View Controller - Master-->
+        <scene sceneID="9nz-pg-NKg">
+            <objects>
+                <tableViewController title="Master" wantsFullScreenLayout="YES" id="QJS-Cf-Qe9" customClass="MSMasterViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" tag="4" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="WYs-MO-Ds3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyBasicCell" textLabel="oDD-dC-QVq" style="IBUITableViewCellStyleDefault" id="Wa6-0Z-ecW">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wa6-0Z-ecW" id="D30-Pe-Lvg">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oDD-dC-QVq">
+                                            <rect key="frame" x="15" y="0.0" width="270" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="Ah7-4n-0Wa" kind="push" identifier="MySegue" id="STv-hG-evp"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="QJS-Cf-Qe9" id="rIQ-Vc-dwJ"/>
+                            <outlet property="delegate" destination="QJS-Cf-Qe9" id="jMh-3V-Ewx"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Item" id="GKI-bO-hIh"/>
+                    <navigationItem key="navigationItem" title="Master" id="fsu-lu-k3d"/>
+                    <size key="freeformSize" width="320" height="568"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TRi-X6-teC" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="480" y="1457"/>
+        </scene>
+        <!--Navigation Controller - Item-->
+        <scene sceneID="OoO-Fz-4On">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="NNy-Vg-6ei" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" image="turtle-32.png" id="BU5-zV-4IR"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VIz-65-xRv">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="QJS-Cf-Qe9" kind="relationship" relationship="rootViewController" id="RNt-MB-0RC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fRZ-lP-DaM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-21" y="1457"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="dumbbell-32.png" width="32" height="32"/>
+        <image name="lock-32.png" width="32" height="32"/>
+        <image name="turtle-32.png" width="32" height="32"/>
+        <image name="vegetarian_food-32.png" width="32" height="32"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="XGy-mZ-PUt"/>
+        <segue reference="STv-hG-evp"/>
     </inferredMetricsTieBreakers>
 </document>
