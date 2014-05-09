@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C3D7399191C89FC006621B8 /* Splash4.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C3D7395191C89FC006621B8 /* Splash4.png */; };
+		2C3D739A191C89FC006621B8 /* Splash5.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C3D7396191C89FC006621B8 /* Splash5.png */; };
+		2C3D739B191C89FC006621B8 /* Splash5.psd in Resources */ = {isa = PBXBuildFile; fileRef = 2C3D7397191C89FC006621B8 /* Splash5.psd */; };
+		2C3D739C191C89FC006621B8 /* Splash4.psd in Resources */ = {isa = PBXBuildFile; fileRef = 2C3D7398191C89FC006621B8 /* Splash4.psd */; };
+		2C3D739F191C8AF9006621B8 /* logo3.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C3D739D191C8AF9006621B8 /* logo3.png */; };
+		2C3D73A0191C8AF9006621B8 /* logo3.psd in Resources */ = {isa = PBXBuildFile; fileRef = 2C3D739E191C8AF9006621B8 /* logo3.psd */; };
 		2CB09BAA191C77C10071B527 /* dumbbell-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CB09BA9191C77C10071B527 /* dumbbell-32.png */; };
 		2CB09BAC191C77C90071B527 /* turtle-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CB09BAB191C77C90071B527 /* turtle-32.png */; };
 		2CB09BAE191C77D20071B527 /* vegetarian_food-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CB09BAD191C77D20071B527 /* vegetarian_food-32.png */; };
@@ -56,6 +62,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C3D7395191C89FC006621B8 /* Splash4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Splash4.png; sourceTree = "<group>"; };
+		2C3D7396191C89FC006621B8 /* Splash5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Splash5.png; sourceTree = "<group>"; };
+		2C3D7397191C89FC006621B8 /* Splash5.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Splash5.psd; sourceTree = "<group>"; };
+		2C3D7398191C89FC006621B8 /* Splash4.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Splash4.psd; sourceTree = "<group>"; };
+		2C3D739D191C8AF9006621B8 /* logo3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo3.png; sourceTree = "<group>"; };
+		2C3D739E191C8AF9006621B8 /* logo3.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = logo3.psd; sourceTree = "<group>"; };
 		2CB09BA9191C77C10071B527 /* dumbbell-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dumbbell-32.png"; sourceTree = "<group>"; };
 		2CB09BAB191C77C90071B527 /* turtle-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "turtle-32.png"; sourceTree = "<group>"; };
 		2CB09BAD191C77D20071B527 /* vegetarian_food-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vegetarian_food-32.png"; sourceTree = "<group>"; };
@@ -284,6 +296,12 @@
 			children = (
 				2CB09BAF191C78200071B527 /* lock-32.png */,
 				2CB09BA9191C77C10071B527 /* dumbbell-32.png */,
+				2C3D7395191C89FC006621B8 /* Splash4.png */,
+				2C3D7396191C89FC006621B8 /* Splash5.png */,
+				2C3D739D191C8AF9006621B8 /* logo3.png */,
+				2C3D739E191C8AF9006621B8 /* logo3.psd */,
+				2C3D7397191C89FC006621B8 /* Splash5.psd */,
+				2C3D7398191C89FC006621B8 /* Splash4.psd */,
 				2CB09BAB191C77C90071B527 /* turtle-32.png */,
 				2CB09BAD191C77D20071B527 /* vegetarian_food-32.png */,
 				2CE26ECF18FF4C3C00233937 /* logo2.png */,
@@ -367,15 +385,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C3D739F191C8AF9006621B8 /* logo3.png in Resources */,
 				EB544A2218A1876200E34B7E /* Images.xcassets in Resources */,
 				EB544A1118A1876200E34B7E /* InfoPlist.strings in Resources */,
 				2CB09BAC191C77C90071B527 /* turtle-32.png in Resources */,
+				2C3D739A191C89FC006621B8 /* Splash5.png in Resources */,
 				2CE26ED018FF4C3C00233937 /* logo2.png in Resources */,
 				2CE26ED218FF4C4F00233937 /* new.jpg in Resources */,
 				EB544A1A18A1876200E34B7E /* Main.storyboard in Resources */,
 				2CB09BAE191C77D20071B527 /* vegetarian_food-32.png in Resources */,
+				2C3D739B191C89FC006621B8 /* Splash5.psd in Resources */,
+				2C3D73A0191C8AF9006621B8 /* logo3.psd in Resources */,
+				2C3D739C191C89FC006621B8 /* Splash4.psd in Resources */,
 				2CB09BB0191C78200071B527 /* lock-32.png in Resources */,
 				2CB09BAA191C77C10071B527 /* dumbbell-32.png in Resources */,
+				2C3D7399191C89FC006621B8 /* Splash4.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -56,7 +56,8 @@
                                               initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                               target:self action:@selector(addTapped:)];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    self.view.backgroundColor = [UIColor colorWithRed:216.0/255.0 green:216.0/255.0 blue:216.0/255.0 alpha:1];
+    self.view.backgroundColor = [UIColor colorWithRed:186.0/255.0 green:114.0/255.0 blue:219.0/255.0 alpha:0.8];
+    //navController.navigationBar.barTintColor = [UIColor navigationColor];
     self.tabBarController.delegate = self;
 }
 

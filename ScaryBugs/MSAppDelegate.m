@@ -21,9 +21,20 @@
                   clientKey:@"BpGsFpZ6lte0RAdS8HJes2fqrXTbO2R66H7TQNPy"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
+    [[UITabBar appearance] setTintColor:[UIColor blackColor]];
+    
     UITabBarController *tabBarController = (UITabBarController *) self.window.rootViewController;
     MSMasterViewController *masterController = [((UINavigationController *)[tabBarController.viewControllers objectAtIndex:0]).viewControllers objectAtIndex:0];
-
+    
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:186.0/255.0 green:114.0/255.0 blue:219.0/255.0 alpha:0.8]];
+    NSShadow *shadow = [[NSShadow alloc] init];
+    shadow.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
+    shadow.shadowOffset = CGSizeMake(0, .5);
+    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                                                           [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0], NSForegroundColorAttributeName,
+                                                           shadow, NSShadowAttributeName,
+                                                           [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:30.0], NSFontAttributeName, nil]];
+    
     long i = tabBarController.viewControllers.count;
     for (int j = 0; j < i; j++) {
         UINavigationController *navController = [tabBarController.viewControllers objectAtIndex:j];

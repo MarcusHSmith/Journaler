@@ -330,12 +330,13 @@
         <image name="turtle-32.png" width="32" height="32"/>
         <image name="vegetarian_food-32.png" width="32" height="32"/>
     </resources>
+    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="STv-hG-evp"/>
+        <segue reference="Jwc-V1-kVX"/>
     </inferredMetricsTieBreakers>
 </document>
