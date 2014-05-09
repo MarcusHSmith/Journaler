@@ -265,9 +265,8 @@
 }
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
-    NSLog(@"INSIDE THIS FUNCTION");
     UINavigationController *ourNavigator = (UINavigationController *) viewController;
-    [((MSMasterViewController *)ourNavigator.topViewController) loadView];
+    [((MSMasterViewController *)ourNavigator.topViewController) viewDidLoad];
     return YES;
 }
 
